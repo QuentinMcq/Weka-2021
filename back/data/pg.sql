@@ -1,34 +1,64 @@
-drop schema if exists sales cascade;
-create schema sales;
-set search_path to sales;
+drop schema if exists weka cascade;
+create schema weka;
+set search_path to weka;
 
-create table person
+
+create table key_word
 (
-    per_id serial primary key,
-    per_name      varchar
+    key_word_id serial primary key,
+    theme       varchar not null
 );
 
-insert into person(per_name) values ('John'), ('Rosy'), ('Pierre');
+insert into key_word(theme)
+values ('histoire'),
+       ('français'),
+       ('informatique'),
+       ('sport'),
+       ('physique');
 
-create table object
+create table quiz
 (
-    obj_id             serial primary key,
-    obj_name           varchar,
-    obj_initial_amount int check(obj_initial_amount > 0)
+    quiz_id     serial primary key,
+    key_word_id int,
+    name        varchar not null,
+    image       varchar not null,
+    foreign key (key_word_id) references key_word (key_word_id)
 );
 
-insert into object(obj_name, obj_initial_amount) values ('TV', 602), ('Smartphone', 400), ('Manga', 145);
+insert into quiz(name, image, key_word_id)
+values ('animaux', 'https://picsum.photos/200/100', 3),
+       ('phones', 'https://picsum.photos/200', 4),
+       ('sushi', 'https://picsum.photos/200/75', 4);
 
-create table sale
+create table question
 (
-    per_id           int references person(per_id),
-    obj_id           int references object(obj_id),
-    last_sale_amount int check(last_sale_amount > 0),
-    primary key(per_id, obj_id)
+    question_id serial primary key,
+    quiz_id     int,
+    sentence    varchar not null,
+    image       varchar null,
+    answer_1    varchar not null,
+    answer_2    varchar not null,
+    answer_3    varchar null,
+    answer_4    varchar null,
+    nb_points   int     not null,
+    foreign key (quiz_id) references quiz (quiz_id)
+
 );
 
-select *
-from person join sale on person.per_id = sale.per_id;
+insert into question(sentence, image, answer_1, answer_2, answer_3, answer_4, nb_points, quiz_id)
+values ('What is the name of Ken ?', 'https://picsum.photos/200', 'Kitano', 'Kenji', 'Kaneki', 'Kirano', 1, 1),
+       ('What is the answer ?', null, 'Kitano', 'Kenji', 'Kaneki', 'Kirano', 2, 1),
+       ('What is the second answer ?', null, 'test1', 'test2', null, null, 3, 2);
 
-select *
-from person natural join sale;
+create table player
+(
+    user_id  serial primary key,
+    name     varchar not null,
+    password varchar not null,
+    age      int     not null
+);
+
+insert into player(name, password, age)
+values ('Quentin', 'quentin1234', 20),
+       ('Marie', 'marie1234', 22),
+       ('Maxime', 'maxime1234', 21);

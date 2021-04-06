@@ -10,15 +10,10 @@ router
     });
 
 router
-    .get("/hello", (req, res) => {
-        res.json("Hellow World!");
-    });
-
-router
-    .get('/persons',
+    .get('/quiz',
         async (req, res) => {
             try {
-                const result = await db.query('select * from person');
+                const result = await db.query('select * from weka.quiz');
                 res.json(result.rows);
             } catch (err) {
                 console.error(err);
@@ -27,10 +22,34 @@ router
         });
 
 router
-    .get('/objects',
+    .get('/question',
         async (req, res) => {
             try {
-                const result = await db.query('select * from object');
+                const result = await db.query('select * from weka.question');
+                res.json(result.rows);
+            } catch (err) {
+                console.error(err);
+                res.sendStatus(500);
+            }
+        });
+
+router
+    .get('/user',
+        async (req, res) => {
+            try {
+                const result = await db.query('select * from weka.player');
+                res.json(result.rows);
+            } catch (err) {
+                console.error(err);
+                res.sendStatus(500);
+            }
+        });
+
+router
+    .get('/word',
+        async (req, res) => {
+            try {
+                const result = await db.query('select * from weka.key_word');
                 res.json(result.rows);
             } catch (err) {
                 console.error(err);

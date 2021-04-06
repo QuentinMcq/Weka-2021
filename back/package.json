@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "resetDB": "psql -f data/pg.sql"
+    "test": "psql -f data/pg.sql"
   },
   "keywords": [],
   "author": "",
