@@ -7,6 +7,7 @@ function App() {
   return (
       <div className="App">
         <nav id="navbar">
+            <Link className="navLink" to="/">Accueil | </Link>
           <Link className="navLink" to="/quiz">Quiz | </Link>
         </nav>
 
