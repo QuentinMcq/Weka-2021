@@ -2,7 +2,23 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 
 export default function Quiz() {
+    const [searchTerm, setSearchTerm] = useState("");
     const [quiz, setQuiz] = useState([]);
+
+    let handleChange = e => {
+        setSearchTerm(e.target.value);
+    };
+
+    useEffect(() => {
+        const results = quiz.filter(q => {
+                console.log(searchTerm);
+                console.log(q.key_word_id);
+                return String(q.key_word_id) === String(searchTerm)
+            }
+        );
+        if (results.length === 0) getQuiz();
+        else setQuiz(results);
+    }, [searchTerm])
 
     async function getQuiz() {
         let data = [];
@@ -18,21 +34,23 @@ export default function Quiz() {
     }
 
     useEffect(() => {
-        getQuiz()
-            .then(r => console.log(r))
-            .catch(err => console.log(err));
+        getQuiz();
     }, []);
 
     return (
         <>
             <div>Quiz</div>
 
+            <label>Recherche : </label>
+            <input id="search" value={searchTerm} onChange={handleChange} type="text"/>
+
             <ul>
                 {quiz.map((quiz, index) =>
                     <li key={index}>
                         ID : {quiz.quiz_id}<br/>
                         {quiz.name} <br/>
-                        <img src={quiz.image} alt="image"/>
+                        <img src={quiz.image} alt="img-quiz"/><br/>
+                        {quiz.key_word_id}<br/>
                     </li>
                 )}
             </ul>
