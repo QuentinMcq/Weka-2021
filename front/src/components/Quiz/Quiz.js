@@ -10,14 +10,10 @@ export default function Quiz() {
     };
 
     useEffect(() => {
-        const results = quiz.filter(q => {
-                console.log(searchTerm);
-                console.log(q.key_word_id);
-                return String(q.key_word_id) === String(searchTerm)
-            }
-        );
-        if (results.length === 0) getQuiz();
-        else setQuiz(results);
+        const results = quiz.filter(q => String(q.key_word_id) === String(searchTerm));
+
+        // Reload quiz data if result is null
+        results.length === 0 ? getQuiz() : setQuiz(results);
     }, [searchTerm])
 
     async function getQuiz() {
