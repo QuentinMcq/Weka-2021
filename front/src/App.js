@@ -1,6 +1,7 @@
 import './App.css';
 import {Link, Router} from "@reach/router";
 import Quiz from './components/Quiz/Quiz';
+import Question from './components/Quiz/Questions';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
         <Router>
           <Quiz path="/quiz"/>
+          <Question path="/question"/>
         </Router>
       </div>
   );

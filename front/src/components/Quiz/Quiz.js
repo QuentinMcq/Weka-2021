@@ -1,5 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
+import {Link, Router} from "@reach/router";
+
 
 export default function Quiz() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -48,7 +50,8 @@ export default function Quiz() {
                 {quiz.map((quiz, index) =>
                     <li key={index}>
                         ID : {quiz.quiz_id}<br/>
-                        {quiz.name} <br/>
+                        <Link className="navLink" to="/question">Accéder au quiz </Link>
+                        <a>{quiz.name} </a><br/>
                         <img src={quiz.image} alt="img-quiz"/><br/>
                         {quiz.key_word_id}<br/>
                     </li>
