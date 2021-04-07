@@ -1,6 +1,7 @@
 import './App.css';
 import {Link, Router} from "@reach/router";
 import Quiz from './components/Quiz/Quiz';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -10,7 +11,6 @@ function App() {
             <Link className="navLink" to="/">Accueil | </Link>
           <Link className="navLink" to="/quiz">Quiz | </Link>
         </nav>
-
         <Router>
           <Quiz path="/quiz"/>
         </Router>

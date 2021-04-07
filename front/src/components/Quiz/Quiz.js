@@ -36,16 +36,14 @@ export default function Quiz() {
     return (
         <>
             <div>Quiz</div>
-
             <label>Recherche : </label>
             <input id="search" value={searchTerm} onChange={handleChange} type="text"/>
-
             <ul>
                 {quiz.map((quiz, index) =>
-                    <li key={index}>
+                    <li key={index} className={"quiz"}>
                         ID : {quiz.quiz_id}<br/>
                         {quiz.name} <br/>
-                        <img src={quiz.image} alt="img-quiz"/><br/>
+                        <img className="image" src={quiz.image} alt="img-quiz"/><br/>
                         {quiz.key_word_id}<br/>
                     </li>
                 )}
