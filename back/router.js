@@ -22,7 +22,7 @@ router
         });
 
 router
-    .get('/question/:id',
+    .get('/quiz/:id',
         async (req, res) => {
             try {
                 const result = await db.query('select * from weka.question as q where q.quiz_id='+req.params.id +

@@ -27,7 +27,7 @@ export default function Question(props) {
         let data = [];
         let id =props.id;
         try {
-            data = (await axios.get("http://localhost:8000/question/"+id)).data;
+            data = (await axios.get("http://localhost:8000/quiz/"+id)).data;
             console.log(data)
         } catch (err) {
             alert(err);
@@ -53,9 +53,7 @@ export default function Question(props) {
                         ID : {question.question_id}<br/>
                         {question.sentence} <br/>
                         <img src={question.image} alt="img-quiz"/><br/>
-                        <div>
-                        <input type="checkbox" id="answer_1" name="answer_1"/> <label>{question.answer_1}</label>
-                        </div><br/>
+                        <input type="checkbox" id="answer_1" name="answer_1"/> <label>{question.answer_1}</label><br/>
                         <input type="checkbox" id="answer_2" name="answer_2"/> <label>{question.answer_2}</label>  <br/>
                         <input type="checkbox" id="answer_3" name="answer_3"/> <label>{question.answer_3}</label>  <br/>
                         <input type="checkbox" id="answer_4" name="answer_4"/> <label>{question.answer_4}</label> <br/>
