@@ -1,16 +1,16 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import axios from "axios";
 import {useCookies} from "react-cookie";
-import {Navbar, Nav} from 'react-bootstrap';
+import {Navbar, Nav, Form, Button, Container} from 'react-bootstrap';
 import Quiz from "./components/Quiz/Quiz";
 import Question from "./components/Question/Question";
 import {Router} from '@reach/router';
 
 
 export default function App() {
-    const [player, setPlayer] = useState({});
+    const [player, setPlayer] = useState({player_name: "", player_password: ""});
     const [cookies, setCookie, removeCookie] = useCookies(['td06']);
 
     async function createAccount(e) {
@@ -25,34 +25,37 @@ export default function App() {
 
     async function signIn(e) {
         e.preventDefault();
-        console.log("test ", player.name);
 
         try {
             const response = (await axios.post('/token', player));
             const data = {
-                name: player.name, token: response.data.token
+                name: player.player_name, token: response.data.token
             }
-            setCookie('td06', data, '/');
+            setCookie('td06', data, '/logout');
 
         } catch (err) {
-            alert("err : " + err);
+            alert("Nom ou mot de passe invalide");
         }
     }
 
-    useEffect(() => {
-        axios.defaults.headers.common['Authorization'] = (cookies.td06 ? 'Bearer ' + cookies.td06.token : null);
-    }, [cookies.td06]);
-
     if (cookies && cookies.td06) {
         return (
-            <>
-                <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href="/">Quiz</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                    <Navbar.Collapse id="basic-navbar-nav">
+            <Container>
+                <Navbar className="mb-5" bg="dark" variant="dark" style={{borderRadius: '3px'}}>
+                    <Navbar.Brand href="/home">Quiz</Navbar.Brand>
+                    <Navbar.Toggle/>
+                    <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="/">Accueil</Nav.Link>
+                            <Nav.Link href="/home">Accueil</Nav.Link>
                             <Nav.Link href="/quiz">Quiz</Nav.Link>
+                        </Nav>
+                        <Nav>
+                            <Button className="btn btn-danger"
+                                      onClick={() => removeCookie('td06')}
+                            >
+                                Déconnexion
+                            </Button>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -61,66 +64,49 @@ export default function App() {
                     <Quiz path='/quiz'/>
                     <Question path='/quiz/:id'/>
                 </Router>
-
-                <div className="container">
-                    <div className="row">hello {cookies.td06.name} !!</div>
-                    <div className="row">
-                        <button className="btn btn-danger" onClick={() => removeCookie('td06')}>Déconnexion</button>
-                    </div>
-                </div>
-            </>
+            </Container>
         )
     }
 
     return (
         <>
-            <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="/">Quiz</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/">Accueil</Nav.Link>
-                        <Nav.Link href="/quiz">Quiz</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+            <h3 style={{textAlign: 'center'}}>Veuillez vous authentifier</h3>
 
-            <Router>
-                <Quiz path='/quiz'/>
-                <Question path='/quiz/:id'/>
-            </Router>
+            <div style={styles.form}>
+                <Form onSubmit={signIn} method="post" style={{display: 'inline-block', alignItems: 'center'}}>
+                    <Form.Group>
+                        <Form.Label>Nom</Form.Label>
+                        <Form.Control type="text"
+                                      placeholder="Nom"
+                                      value={player.player_name}
+                                      onChange={e => setPlayer({...player, player_name: e.target.value})}/>
+                    </Form.Group>
 
-            {/*<div className="container">*/}
-            {/*    <div className="row">hello {cookies.td06.name} !!</div>*/}
-            {/*    <div className="row">*/}
-            {/*        <button className="btn btn-danger" onClick={() => removeCookie('td06')}>Déconnexion</button>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+                    <Form.Group>
+                        <Form.Label>Mot de passe</Form.Label>
+                        <Form.Control type="password"
+                                      placeholder="Mot de passe"
+                                      value={player.player_password}
+                                      onChange={e => setPlayer({...player, player_password: e.target.value})}
+                        />
+                        <Form.Text className="text-muted">
+                            Vos informations sont sécurisées !
+                        </Form.Text>
+                    </Form.Group>
 
-
-            {/*<h1>Pour profiter du site, connectez-vous !</h1>*/}
-
-            {/*<form onSubmit={signIn} method="post">*/}
-            {/*    <div>*/}
-            {/*        Username*/}
-            {/*        <input*/}
-            {/*            type="text"*/}
-            {/*            value={player.name}*/}
-            {/*            onChange={e => setPlayer({...player, name: e.target.value})}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        Password*/}
-            {/*        <input*/}
-            {/*            type="password"*/}
-            {/*            value={player.password}*/}
-            {/*            onChange={e => setPlayer({...player, name: e.target.value})}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <button type="submit">Valider</button>*/}
-            {/*    </div>*/}
-            {/*</form>*/}
+                    <Button variant="primary" type="submit">
+                        Valider
+                    </Button>
+                </Form>
+            </div>
         </>
     );
+}
+
+const styles = {
+    form: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 }
