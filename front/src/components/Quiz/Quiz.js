@@ -4,26 +4,31 @@ import DropdownFilter from "../Dropdown/Dropdown";
 
 export default function Quiz() {
     const [searchTerm, setSearchTerm] = useState('');
-    const [quiz, setQuiz] = useState([]);
+    const [quizzes, setQuizzes] = useState([]);
+    //const [themes, setThemes] = useState([]);
 
-    async function getQuiz() {
-        let data = [];
+    async function getData() {
+        let data_quiz = [];
+        //let data_theme = [];
 
         try {
-            data = (await axios.get('http://localhost:8000/quiz')).data;
+            data_quiz = (await axios.get('/quiz')).data;
+            //data_theme = (await axios.get('/theme')).data;
         } catch (err) {
             alert(err);
         } finally {
-            setQuiz(data);
+            setQuizzes(data_quiz);
+           // setThemes(data_theme);
         }
     }
 
     useEffect(() => {
-        getQuiz();
+        getData();
     }, []);
 
-    const itemsToShow = quiz
+    const displayQuizzes = quizzes
         .filter((item) => {
+            console.log(searchTerm)
             return searchTerm ? item.theme === searchTerm : true;
         })
         .map((item, index) => (
@@ -42,11 +47,11 @@ export default function Quiz() {
     return (
         <>
             <DropdownFilter
-                items={quiz}
+                themes={quizzes}
                 setSelected={setSearchTerm}
             />
 
-            <div>{itemsToShow}</div>
+            <div>{displayQuizzes}</div>
         </>
     )
 }

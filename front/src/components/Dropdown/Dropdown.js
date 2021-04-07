@@ -18,16 +18,16 @@ export default function DropdownFilter(props) {
 
                     <Dropdown.Divider/>
 
-                    {props.items.map((quiz, index) => (
+                    {props.themes.map((item, index) => (
                         <>
                             <Dropdown.Item
                                 key={index}
                                 onClick={(e) => {
                                     props.setSelected(e.target.text)
                                 }}
-                                value={quiz.theme}
+                                value={item.theme}
                             >
-                                {quiz.theme}
+                                {item.theme}
                             </Dropdown.Item>
                         </>
                     ))}
