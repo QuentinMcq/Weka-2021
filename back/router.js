@@ -75,7 +75,7 @@ router
     .get('/quiz/:id',
         async (req, res) => {
             try {
-                const result = await pool.query('select * from question as q where q.quiz_id='+req.params.id);
+                const result = await pool.query('select * from question as q where q.quiz_id=' + req.params.id);
                 res.json(result.rows);
             } catch (err) {
                 console.error(err);

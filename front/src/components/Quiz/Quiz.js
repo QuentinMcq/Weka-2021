@@ -1,12 +1,14 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import DropdownFilter from "../Dropdown/Dropdown";
-import {Link, Router} from "@reach/router";
+import {Link} from "@reach/router";
+import {Container} from "react-bootstrap";
 
 
 export default function Quiz() {
     const [searchTerm, setSearchTerm] = useState('');
     const [quizzes, setQuizzes] = useState([]);
+
     //const [themes, setThemes] = useState([]);
 
     async function getData() {
@@ -20,7 +22,7 @@ export default function Quiz() {
             alert(err);
         } finally {
             setQuizzes(data_quiz);
-           // setThemes(data_theme);
+            // setThemes(data_theme);
         }
     }
 
@@ -30,7 +32,6 @@ export default function Quiz() {
 
     const displayQuizzes = quizzes
         .filter((item) => {
-            console.log(searchTerm)
             return searchTerm ? item.theme === searchTerm : true;
         })
         .map((item, index) => (
@@ -38,8 +39,14 @@ export default function Quiz() {
                 <div key={index}>
                     {item.quiz_id}
                     <br/>
-                    {item.name}
-                    <Link className="navLink" to={`/quiz/${item.quiz_id}`}>Accéder au quiz </Link>
+                    <span>{item.name}</span>
+                    <br/>
+                    <Link
+                        className="navLink"
+                        to={`/quiz/${item.quiz_id}`}
+                    >
+                        Accéder au quiz
+                    </Link>
                     <br/>
                     <img src={item.image} alt="img-quiz"/>
 
@@ -49,13 +56,13 @@ export default function Quiz() {
         ));
 
     return (
-        <>
+        <Container style={{textAlign: 'center'}}>
             <DropdownFilter
                 themes={quizzes}
                 setSelected={setSearchTerm}
             />
 
             <div>{displayQuizzes}</div>
-        </>
+        </Container>
     )
 }

@@ -5,7 +5,7 @@ import axios from "axios";
 import {useCookies} from "react-cookie";
 import {Navbar, Nav} from 'react-bootstrap';
 import Quiz from "./components/Quiz/Quiz";
-import Question from "./components/Quiz/Questions";
+import Question from "./components/Question/Question";
 import {Router} from '@reach/router';
 
 
@@ -58,9 +58,8 @@ export default function App() {
                 </Navbar>
 
                 <Router>
-                    {/*<div path='/'/>*/}
                     <Quiz path='/quiz'/>
-                    {/*<Question path='/quiz/:id'></Question>*/}
+                    <Question path='/quiz/:id'/>
                 </Router>
 
                 <div className="container">
@@ -87,7 +86,6 @@ export default function App() {
             </Navbar>
 
             <Router>
-                {/*<div path='/'/>*/}
                 <Quiz path='/quiz'/>
                 <Question path='/quiz/:id'/>
             </Router>
