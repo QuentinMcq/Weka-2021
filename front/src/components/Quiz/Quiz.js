@@ -35,16 +35,22 @@ export default function Quiz() {
 
     return (
         <>
+
             <div>Quiz</div>
-            <label>Recherche : </label>
+            <label>Recherche  </label>
             <input id="search" value={searchTerm} onChange={handleChange} type="text"/>
             <ul>
                 {quiz.map((quiz, index) =>
                     <li key={index} className={"quiz"}>
-                        ID : {quiz.quiz_id}<br/>
-                        {quiz.name} <br/>
-                        <img className="image" src={quiz.image} alt="img-quiz"/><br/>
-                        {quiz.key_word_id}<br/>
+                        <div className="col d-flex justify-content-center">
+                        <div className="card">
+                            <img className="image" src={quiz.image} alt="img-quiz"/><br/>
+                            <div className="card-body">
+                                <h5 className="card-title">{quiz.name}</h5>
+                                <a href="#" className="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        </div>
                     </li>
                 )}
             </ul>

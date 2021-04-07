@@ -39,7 +39,6 @@
 .image {
   max-width: 100%;
   height: auto;
-  border-radius: 20%;
 }
 
 .quiz {
@@ -51,4 +50,13 @@ ul {
   list-style-type: none;
 }
 
+.card {
+  width: 18rem;
+  border-radius: 20%;
+  justify-content: center;
+}
+
+.card-body{
+  margin: 0;
+}
 

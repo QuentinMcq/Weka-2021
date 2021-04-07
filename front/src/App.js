@@ -9,7 +9,7 @@ function App() {
       <div className="App">
         <nav id="navbar">
             <Link className="navLink" to="/">Accueil | </Link>
-          <Link className="navLink" to="/quiz">Quiz | </Link>
+          <Link className="navLink" to="/quiz">Quiz </Link>
         </nav>
         <Router>
           <Quiz path="/quiz"/>
