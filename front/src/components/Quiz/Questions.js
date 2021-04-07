@@ -53,11 +53,12 @@ export default function Question(props) {
                         ID : {question.question_id}<br/>
                         {question.sentence} <br/>
                         <img src={question.image} alt="img-quiz"/><br/>
-
-                        {question.answer_1} <br/>
-                        {question.answer_2} <br/>
-                        {question.answer_3} <br/>
-                        {question.answer_4} <br/>
+                        <div>
+                        <input type="checkbox" id="answer_1" name="answer_1"/> <label>{question.answer_1}</label>
+                        </div><br/>
+                        <input type="checkbox" id="answer_2" name="answer_2"/> <label>{question.answer_2}</label>  <br/>
+                        <input type="checkbox" id="answer_3" name="answer_3"/> <label>{question.answer_3}</label>  <br/>
+                        <input type="checkbox" id="answer_4" name="answer_4"/> <label>{question.answer_4}</label> <br/>
                        Point(s): {question.nb_points}<br/>
                        <br/>
                     </li>
