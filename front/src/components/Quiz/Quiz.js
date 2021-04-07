@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import DropdownFilter from "../Dropdown/Dropdown";
+import {Link, Router} from "@reach/router";
+
 
 export default function Quiz() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -37,8 +39,10 @@ export default function Quiz() {
                     {item.quiz_id}
                     <br/>
                     {item.name}
+                    <Link className="navLink" to={`/quiz/${item.quiz_id}`}>Accéder au quiz </Link>
                     <br/>
                     <img src={item.image} alt="img-quiz"/>
+
                     <br/>
                 </div>
             </>
