@@ -22,10 +22,10 @@ create table quiz
     quiz_id  serial primary key,
     name     varchar not null,
     image    varchar not null,
-    key_word varchar not null
+    theme varchar not null
 );
 
-insert into quiz(name, image, key_word)
+insert into quiz(name, image, theme)
 values ('Animals', 'https://picsum.photos/200/100', 'animal'),
        ('Technology', 'https://picsum.photos/200', 'technology');
 
