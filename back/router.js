@@ -23,7 +23,7 @@ router
         try {
             bcrypt.hash(req.body.password, saltRounds, async (err, hash) => {
                 const result = await pool.query(
-                    'insert into player(name, password) values ($1, $2) returning player_id',
+                    'insert into player(player_name, player_password) values ($1, $2) returning player_id',
                     [req.body.name, hash]
                 );
 
@@ -75,11 +75,23 @@ router
     .get('/quiz/:id',
         async (req, res) => {
             try {
-                const result = await pool.query('select * from question as q where q.quiz_id=' + req.params.id);
+                const result = await pool.query('select * from question as q where q.quiz_id = ' + req.params.id);
                 res.json(result.rows);
             } catch (err) {
                 console.error(err);
                 res.sendStatus(500);
+            }
+        })
+
+    .delete('/quiz/:id',
+        async (req, res) => {
+            try {
+                const result = await pool.query('delete from quiz where quiz_id = ' + req.params.id);
+                res.json(result.rows);
+            } catch (err) {
+                console.error(err);
+                res.sendStatus(500);
+                console.log(err)
             }
         })
 

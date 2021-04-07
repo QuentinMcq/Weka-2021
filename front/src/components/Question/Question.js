@@ -3,18 +3,18 @@ import axios from "axios";
 import {Container, Row, Col} from "react-bootstrap";
 
 export default function Question(props) {
-    const [question, setQuestion] = useState([]);
+    const [questions, setQuestions] = useState([]);
 
     async function getQuestion() {
         let data = [];
         let id = props.id;
+
         try {
-            data = (await axios.get("http://localhost:8000/quiz/" + id)).data;
-            console.log(data)
+            data = (await axios.get("/quiz/" + id)).data;
         } catch (err) {
             alert(err);
         } finally {
-            setQuestion(data);
+            setQuestions(data);
         }
     }
 
@@ -25,10 +25,10 @@ export default function Question(props) {
     return (
         <Container style={{textAlign: 'center'}}>
             <>
-                {question.map((question, index) =>
+                {questions.map((question, index) =>
                     <Container key={index} style={{marginTop: '5%'}}>
                         <h3 style={{textDecoration: 'underline'}}>Question {index + 1}
-                            <span style={{fontWeight: 'bold'}}> ({question.nb_points} points)</span>
+                            <span className="font-weight-bold"> ({question.nb_points} points)</span>
                         </h3>
                         <br/>
                         <h4>{question.sentence}</h4>
@@ -61,6 +61,7 @@ export default function Question(props) {
                                             {question.answer_2.includes('https') ?
                                                 <img src={question.answer_2} alt='answer_2'/> :
                                                 <span>{question.answer_2}</span>
+                                                // <button className=" p-2 rounded shadow mb-4"> {question.answer_2}</button>
                                             }
                                         </>
                                     ) : ''}
@@ -100,7 +101,6 @@ export default function Question(props) {
                                             }
                                         </>
                                     ) : ''}
-
                                 </Col>
                             </Row>
                         </Container>

@@ -8,16 +8,21 @@ import Quiz from "./components/Quiz/Quiz";
 import Question from "./components/Question/Question";
 import {Router} from '@reach/router';
 
-
 export default function App() {
     const [player, setPlayer] = useState({player_name: "", player_password: ""});
     const [cookies, setCookie, removeCookie] = useCookies(['td06']);
+
+   const checkCredential = () => player.player_name === "" || player.player_password === "";
 
     async function createAccount(e) {
         e.preventDefault();
 
         try {
-            await axios.post('/signup', player);
+            await axios.post('/signup', {
+                name: player.player_name,
+                password: player.player_password
+            });
+            console.log(player)
         } catch (err) {
             alert(err);
         }
@@ -41,7 +46,7 @@ export default function App() {
     if (cookies && cookies.td06) {
         return (
             <Container>
-                <Navbar className="mb-5" bg="dark" variant="dark" style={{borderRadius: '3px'}}>
+                <Navbar className="mb-5" bg="dark" variant="dark" style={{borderRadius: '2px'}}>
                     <Navbar.Brand href="/home">Quiz</Navbar.Brand>
                     <Navbar.Toggle/>
                     <Navbar.Collapse id="responsive-navbar-nav">
@@ -51,7 +56,7 @@ export default function App() {
                         </Nav>
                         <Nav>
                             <Button className="btn btn-danger"
-                                      onClick={() => removeCookie('td06')}
+                                    onClick={() => removeCookie('td06')}
                             >
                                 Déconnexion
                             </Button>
@@ -69,44 +74,51 @@ export default function App() {
     }
 
     return (
-        <>
-            <h3 style={{textAlign: 'center'}}>Veuillez vous authentifier</h3>
+        <div className="form">
+            <img src="https://picsum.photos/200" alt="auth-logo"/>
+            <Form className="p-4" onSubmit={signIn} method="post">
 
-            <div style={styles.form}>
-                <Form onSubmit={signIn} method="post" style={{display: 'inline-block', alignItems: 'center'}}>
-                    <Form.Group>
-                        <Form.Label>Nom</Form.Label>
-                        <Form.Control type="text"
-                                      placeholder="Nom"
-                                      value={player.player_name}
-                                      onChange={e => setPlayer({...player, player_name: e.target.value})}/>
-                    </Form.Group>
+                <h3 className="text-center mb-5">Veuillez vous authentifier</h3>
+                <Form.Group>
+                    <Form.Label>Nom</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Nom"
+                        value={player.player_name}
+                        onChange={e => setPlayer({...player, player_name: e.target.value})}
+                    />
+                </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Mot de passe</Form.Label>
-                        <Form.Control type="password"
-                                      placeholder="Mot de passe"
-                                      value={player.player_password}
-                                      onChange={e => setPlayer({...player, player_password: e.target.value})}
-                        />
-                        <Form.Text className="text-muted">
-                            Vos informations sont sécurisées !
-                        </Form.Text>
-                    </Form.Group>
+                <Form.Group>
+                    <Form.Label>Mot de passe</Form.Label>
+                    <Form.Control
+                        type="password"
+                        placeholder="Mot de passe"
+                        value={player.player_password}
+                        onChange={e => setPlayer({...player, player_password: e.target.value})}
+                    />
+                    <Form.Text className="text-muted">
+                        Vos informations sont sécurisées !
+                    </Form.Text>
+                </Form.Group>
 
-                    <Button variant="primary" type="submit">
-                        Valider
-                    </Button>
-                </Form>
-            </div>
-        </>
+                <Button
+                    className="mr-3"
+                    variant="primary"
+                    type="submit"
+                >
+                    Valider
+                </Button>
+
+                <Button
+                    className="mr-3"
+                    variant="success"
+                    onClick={createAccount}
+                    disabled={checkCredential() === true}
+                >
+                    Créer un compte
+                </Button>
+            </Form>
+        </div>
     );
-}
-
-const styles = {
-    form: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
 }
