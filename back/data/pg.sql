@@ -26,7 +26,7 @@ create table quiz
 );
 
 insert into quiz(name, image, theme)
-values ('Animals', './computer.png', 'animal'),
+values ('Animals', 'https://picsum.photos/200', 'animal'),
        ('Technology', 'https://picsum.photos/200', 'technology');
 
 create table question
@@ -49,7 +49,7 @@ insert into question(sentence, image, answer_1, answer_2, answer_3, answer_4, co
 values ('What is the slowest animal of the world ?', 'https://picsum.photos/200', 'Three-toed Sloth', 'Four-toed Sloth',
         'Three-toed Turtle', 'Four-toed Turtle', 'Three-toed Sloth', 1, 1),
        ('Which bird is a universal symbol of peace ?', null, 'Eagle', 'Magpie', 'Swallow', 'Dove', 'Dove',2, 1),
-       ('Which animal has the highest blood pressure ?', null, 'Horse', 'Sloth', 'Turtle', 'Giraffe', 'Giraffe', 3, 1),
+       ('Which animal has the highest blood pressure ?', null, 'https://picsum.photos/100', 'https://picsum.photos/100', 'https://picsum.photos/100', 'https://picsum.photos/100', 'https://picsum.photos/200', 3, 1),
        ('The python is a poisonous snake. True or false ?', null, 'True', 'False', null, null,'False', 3, 1),
        ('Which of these is not a peripheral, in computer terms ?', null, 'Keyboard', 'Motherboard', 'Mouse', 'Monitor','Motherboard',
         3, 2),

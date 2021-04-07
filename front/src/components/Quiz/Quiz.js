@@ -37,7 +37,7 @@ export default function Quiz() {
         <>
 
             <div>Quiz</div>
-            <label>Recherche  </label>
+            <label>Recherche : </label>
             <input id="search" value={searchTerm} onChange={handleChange} type="text"/>
             <ul>
                 {quiz.map((quiz, index) =>
