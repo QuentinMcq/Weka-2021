@@ -35,7 +35,6 @@ export default function Question(props) {
             setQuestion(data);
         }
     }
-
     useEffect(() => {
         getQuestion();
     }, []);
@@ -44,19 +43,20 @@ export default function Question(props) {
 
         <>
             <div>Quiz {question.quiz_id}</div>
-            <div>Quiz {props.id}</div>
 
             <ul>
 
                 {question.map((question, index) =>
                     <li key={index}>
-                        ID : {question.question_id}<br/>
+                        Question : {question.question_id}<br/>
                         {question.sentence} <br/>
                         <img src={question.image} alt="img-quiz"/><br/>
                         <input type="checkbox" id="answer_1" name="answer_1"/> <label>{question.answer_1}</label><br/>
                         <input type="checkbox" id="answer_2" name="answer_2"/> <label>{question.answer_2}</label>  <br/>
-                        <input type="checkbox" id="answer_3" name="answer_3"/> <label>{question.answer_3}</label>  <br/>
-                        <input type="checkbox" id="answer_4" name="answer_4"/> <label>{question.answer_4}</label> <br/>
+                        <input  type="checkbox" id="answer_3" name="answer_3"/><label>{question.answer_3}</label><br/>
+
+                            <input type="checkbox" id="answer_4" name="answer_4"/> <label>{question.answer_4}</label> <br/>
+
                        Point(s): {question.nb_points}<br/>
                        <br/>
                     </li>

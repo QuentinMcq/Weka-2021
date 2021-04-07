@@ -25,7 +25,7 @@ router
     .get('/quiz/:id',
         async (req, res) => {
             try {
-                const result = await db.query('select * from weka.question as q where q.quiz_id='+req.params.id +
+                const result = await db.query('select * from weka.question as q where q.quiz_id='+req.params.id  +
                     ' ');
                 res.json(result.rows);
             } catch (err) {
