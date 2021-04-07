@@ -14,7 +14,7 @@ function App() {
 
         <Router>
           <Quiz path="/quiz"/>
-          <Question path="/question"/>
+          <Question path="/question/:id"/>
         </Router>
       </div>
   );

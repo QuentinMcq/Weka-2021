@@ -1,11 +1,12 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
-import {Link} from "@reach/router";
+import {Link, useParams} from "@reach/router";
 
-export default function Quiz() {
+export default function Question(props) {
     const [searchTerm, setSearchTerm] = useState("");
     const [question, setQuestion] = useState([]);
-
+    //let { id } = useParams();
+    console.log(props.id);
     let handleChange = e => {
         setSearchTerm(e.target.value);
     };
@@ -24,9 +25,9 @@ export default function Quiz() {
 
     async function getQuestion() {
         let data = [];
-
+        let id =props.id;
         try {
-            data = (await axios.get('http://localhost:8000/question')).data;
+            data = (await axios.get("http://localhost:8000/question/"+id)).data;
             console.log(data)
         } catch (err) {
             alert(err);
@@ -40,10 +41,13 @@ export default function Quiz() {
     }, []);
 
     return (
+
         <>
             <div>Quiz {question.quiz_id}</div>
+            <div>Quiz {props.id}</div>
 
             <ul>
+
                 {question.map((question, index) =>
                     <li key={index}>
                         ID : {question.question_id}<br/>
@@ -54,7 +58,8 @@ export default function Quiz() {
                         {question.answer_2} <br/>
                         {question.answer_3} <br/>
                         {question.answer_4} <br/>
-                        {question.nb_points}<br/>
+                       Point(s): {question.nb_points}<br/>
+                       <br/>
                     </li>
                 )}
             </ul>
@@ -62,3 +67,5 @@ export default function Quiz() {
 
     );
 }
+
+
