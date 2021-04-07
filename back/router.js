@@ -38,8 +38,8 @@ router
 
     .post("/token", async (req, res) => {
         try {
-            const result = await pool.query('select player_id, password from player where name = $1', [req.body.name]);
-            const match = await bcrypt.compare(req.body.password, result.rows[0].password);
+            const result = await pool.query('select player_id, player_password from player where player_name = $1', [req.body.player_name]);
+            const match = await bcrypt.compare(req.body.player_password, result.rows[0].player_password);
 
             if (match) {
                 const token = jwt.sign({

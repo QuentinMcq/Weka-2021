@@ -13,7 +13,7 @@
 
 # misc
 .DS_Store
-back/env.local.js
+.env.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -23,4 +23,3 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
-./back/data/pg.js
