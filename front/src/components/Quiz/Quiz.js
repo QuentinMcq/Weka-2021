@@ -64,7 +64,7 @@ export default function Quiz() {
                         >Créer une question</Link>
 
                         <button
-                            className="btn btn-danger mr-3"
+                            className="btn btn-danger ml-3"
                             onClick={() => deleteQuiz(item.quiz_id)}
                         >
                             Supprimer le quiz
