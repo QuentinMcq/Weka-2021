@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Quiznet 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Organisation
 
-## Available Scripts
+L'équipe est composée de **Maxime Dujardin**, **Quentin Macq** et **Marie Wantiez**. <br/>
+**Quiznet** est une application permettant à des joueurs de participer à des quiz sur différents thèmes. Les joueurs peuvent également proposer leurs propres quiz. Les thèmes sont définis par les joueurs, ils sont donc variés.
+Le projet est réalisé --- technologies + packages
 
-In the project directory, you can run:
+## Gestion de projet
 
-### `yarn start`
+Nous avons utilisé **Trello** tout au long du projet pour gérer les différentes tâches à accomplir. Cet outil nous permet de diviser les tâches en différentes listes et de les attribuer aux membres de l'équipe. Le système d'étiquettes permet d'avoir un rendu visuel plus lisible et plus propre: nous avons créé les étiquettes "front", "back", "bdd", "test", "obligatoire 1", "obligatoire 2", etc.. <br/>
+Au début du projet, nous avons travaillé ensemble sur la mise en place de la base de données. Ainsi, nous avons pu nous assurer de partir sur la même base et ainsi faciliter le déroulement du projet.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Chaque jour, nous commencions avec un *Daily Meeting* pour discuter de l'avancement de nos tâches et attribuer les tâches du jour. Nous utilisions **Zoom** pour partager nos écrans et discuter du code en cours ou prendre des décisions communes concernant le projet.<br/>
+Les tâches ont d'abord été préparées dans les listes correspondantes (*back, front, database, test*), puis déplacée dans "A faire aujourd'hui" au début de chaque jour. Lorsqu'une tâche était commencée, elle passait dans la liste "En cours", puis dans "A valider" lorsque c'était nécessaire. Ainsi, les professeurs ont pu visualiser les tâches à valider facilement, et nous savions ce que nous devions montrer. Finalement, la tâche validée ou qui n'avait pas besoin de validation passait dans "Done". <br/>
+Cette organisation nous a permis d'avancer de façon claire et efficace dans ce projet.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Rôles -> 
 
-### `yarn build`
+## Application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Fonctionnalités obligatoires
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Fonctionne totalement | Fonctionne partiellement | Ne fonctionne pas | Non fait |
+| --------------------- |  ----------------------- |  ---------------- | -------- |
+| Créer la base de données - Maxime, Quentin et Marie |  |  | cell | 
+| Insertion de données - Marie |  |  | cell | 
+| Affichage de tous les quiz, avec l'image associée - Quentin et Marie |  |  | cell | 
+|  Afficher la liste des quiz en fonction d’un mot-clé - Quentin |  |  | cell | 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Mise en place 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Une notice technique qui explique comment exécuter l'application, en particulier la base de
+données et les fichiers utiles pour démarrer correctement.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Retrospective
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
