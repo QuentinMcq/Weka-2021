@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import {Container} from "react-bootstrap";
 import CheckQuestion from "./CheckQuestion";
+import {Link} from "@reach/router";
 
 export default function Question(props) {
     const [questions, setQuestions] = useState([]);
@@ -67,13 +68,21 @@ export default function Question(props) {
                     </Container>
                 )}
 
+                <div className="mt-5 mb-5">
+                    <button
+                        className="btn btn-primary mr-3"
+                        onClick={calculatePoints}
+                    >
+                        Vérifier les réponses
+                    </button>
 
-                <button
-                    className="btn btn-primary mt-5"
-                    onClick={calculatePoints}
-                >
-                    Vérifier les réponses
-                </button>
+                    <Link
+                        to='/quiz'
+                        className="btn btn-secondary ml-3"
+                    >
+                        Retour
+                    </Link>
+                </div>
             </Container>
 
             <h2 id="result" className="col d-flex justify-content-center"/>

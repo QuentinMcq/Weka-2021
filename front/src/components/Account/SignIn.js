@@ -2,13 +2,11 @@ import {Form} from "react-bootstrap";
 import axios from "axios";
 import {Link} from '@reach/router';
 
-
 export default function SignIn(props) {
     async function signIn(e) {
         e.preventDefault();
 
         try {
-            console.log(props.player)
             const response = (await axios.post('/token', props.player));
             const data = {
                 name: props.player.name,
@@ -67,8 +65,6 @@ export default function SignIn(props) {
                     >
                         Créer un compte
                     </Link>
-
-
                 </div>
             </Form>
         </div>

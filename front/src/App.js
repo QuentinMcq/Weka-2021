@@ -8,8 +8,8 @@ import Question from "./components/Question/Question";
 import CreateQuiz from "./components/Quiz/CreateQuiz";
 import {Router, Link} from '@reach/router';
 import CreateQuestion from "./components/Question/CreateQuestion";
-import CreateAccount from "./components/Account/CreateAccount";
 import SignIn from "./components/Account/SignIn";
+import CreateAccount from "./components/Account/CreateAccount";
 
 export default function App() {
     const [player, setPlayer] = useState({name: "", password: ""});
@@ -52,7 +52,10 @@ export default function App() {
 
     return (
         <>
-            <SignIn path='/sign_in' player={player} setPlayer={setPlayer}/>
+            <Router>
+                <SignIn path='/' player={player} setPlayer={setPlayer} setCookie={setCookie}/>
+                <CreateAccount path='/create_account' player={player} setPlayer={setPlayer} setCookie={setCookie}/>
+            </Router>
         </>
     );
 }

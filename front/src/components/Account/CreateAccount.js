@@ -1,13 +1,16 @@
 import {Form} from "react-bootstrap";
 import axios from "axios";
+import {Link} from "@reach/router";
 
 export default function CreateAccount(props) {
     const checkCredential = () => props.player.name.length === 0 || props.player.password.length < 8;
 
     async function createAccount(e) {
+        let accountText = document.getElementById('account-text');
         e.preventDefault();
 
         try {
+            accountText.innerHTML = "Compte créé avec succès !"
             await axios.post('/signup', props.player);
         } catch (err) {
             alert(err);
@@ -42,11 +45,11 @@ export default function CreateAccount(props) {
                         onChange={e => props.setPlayer({...props.player, password: e.target.value})}
                     />
                     <Form.Text className="text-muted">
-                        Votre mot de passe doit comporter 8  caractères minimum
+                        Votre mot de passe doit comporter 8 caractères minimum
                     </Form.Text>
                 </Form.Group>
 
-                <div className="mt-5">
+                <div className="mt-5" style={{display: "inline-flex"}}>
                     <button
                         className="btn btn-primary mr-3"
                         type="submit"
@@ -54,6 +57,10 @@ export default function CreateAccount(props) {
                     >
                         Valider
                     </button>
+
+                    <div id="account-text"/>
+
+                    <Link to='/' className="btn btn-secondary">Retour</Link>
                 </div>
             </Form>
         </div>
