@@ -22,7 +22,6 @@ create table quiz
     name    varchar not null,
     image   varchar not null,
     theme   varchar not null
---     foreign key (theme_id) references theme (theme_id)
 );
 
 insert into quiz(name, image, theme)
@@ -32,7 +31,7 @@ values ('Animals', 'https://picsum.photos/200/100', 'histoire'),
 create table question
 (
     question_id    serial primary key,
-    quiz_id        int,
+    quiz_id        int not null,
     sentence       varchar not null,
     answer_1       varchar not null,
     answer_2       varchar not null,
@@ -40,7 +39,7 @@ create table question
     answer_4       varchar null,
     correct_answer varchar not null,
     nb_points      int     not null,
-    foreign key (quiz_id) references quiz (quiz_id)
+    foreign key (quiz_id) references quiz (quiz_id) on delete cascade
 );
 
 insert into question(sentence, answer_1, answer_2, answer_3, answer_4, correct_answer, nb_points, quiz_id)
@@ -59,12 +58,12 @@ values ('What is the slowest animal of the world ?', 'Three-toed Sloth', 'Four-t
 
 create table player
 (
-    player_id       serial primary key,
-    player_name     varchar not null,
-    player_password varchar not null
+    player_id serial primary key,
+    name      varchar not null,
+    password  varchar not null
 );
 
-insert into player(player_name, player_password)
+insert into player(name, password)
 values ('quentin', 'quentin1234'),
        ('marie', 'marie1234'),
        ('maxime', 'maxime1234');

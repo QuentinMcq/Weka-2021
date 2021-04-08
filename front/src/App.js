@@ -3,26 +3,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from "react";
 import axios from "axios";
 import {useCookies} from "react-cookie";
-import {Navbar, Nav, Form, Button, Container} from 'react-bootstrap';
+import {Navbar, Nav, Form, Container} from 'react-bootstrap';
 import Quiz from "./components/Quiz/Quiz";
 import Question from "./components/Question/Question";
-import {Router} from '@reach/router';
+import CreateQuiz from "./components/Quiz/CreateQuiz";
+import {Router, Link} from '@reach/router';
+import CreateQuestion from "./components/Question/CreateQuestion";
 
 export default function App() {
-    const [player, setPlayer] = useState({player_name: "", player_password: ""});
+    const [player, setPlayer] = useState({name: "", password: ""});
     const [cookies, setCookie, removeCookie] = useCookies(['td06']);
 
-   const checkCredential = () => player.player_name === "" || player.player_password === "";
+    const checkCredential = () => player.name.length === 0 || player.password.length < 8;
 
     async function createAccount(e) {
+        let accountText = document.getElementById("account-text");
         e.preventDefault();
 
         try {
-            await axios.post('/signup', {
-                name: player.player_name,
-                password: player.player_password
-            });
+            await axios.post('/signup', player);
             console.log(player)
+            accountText.innerHTML = "Compté créé !"
         } catch (err) {
             alert(err);
         }
@@ -34,9 +35,10 @@ export default function App() {
         try {
             const response = (await axios.post('/token', player));
             const data = {
-                name: player.player_name, token: response.data.token
+                name: player.name,
+                token: response.data.token
             }
-            setCookie('td06', data, '/logout');
+            setCookie('td06', data, '/');
 
         } catch (err) {
             alert("Nom ou mot de passe invalide");
@@ -47,20 +49,23 @@ export default function App() {
         return (
             <Container>
                 <Navbar className="mb-5" bg="dark" variant="dark" style={{borderRadius: '2px'}}>
-                    <Navbar.Brand href="/home">Quiz</Navbar.Brand>
+                    <Navbar.Brand href="/quiz">QuizNet</Navbar.Brand>
                     <Navbar.Toggle/>
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="/home">Accueil</Nav.Link>
-                            <Nav.Link href="/quiz">Quiz</Nav.Link>
+                            <Link style={{textDecoration: 'none', color: 'white'}} to="/quiz">Quiz</Link>
+                            &nbsp; &nbsp;
+                            <Link style={{textDecoration: 'none', color: 'white'}} to="/quiz/create">Créer un
+                                quiz</Link>
                         </Nav>
                         <Nav>
-                            <Button className="btn btn-danger"
-                                    onClick={() => removeCookie('td06')}
+                            <Link
+                                to='/'
+                                className="btn btn-danger"
+                                onClick={() => removeCookie('td06')}
                             >
                                 Déconnexion
-                            </Button>
-
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -68,24 +73,24 @@ export default function App() {
                 <Router>
                     <Quiz path='/quiz'/>
                     <Question path='/quiz/:id'/>
+                    <CreateQuiz path='/quiz/create'/>
+                    <CreateQuestion path='/question/create'/>
                 </Router>
             </Container>
         )
     }
 
     return (
-        <div className="form">
-            <img src="https://picsum.photos/200" alt="auth-logo"/>
-            <Form className="p-4" onSubmit={signIn} method="post">
-
-                <h3 className="text-center mb-5">Veuillez vous authentifier</h3>
+        <div id="form-container">
+            <Form id="form-style" className="p-5" onSubmit={signIn} method="post">
+                <h4 className="text-center font-weight-bold mb-5">Veuillez vous authentifier</h4>
                 <Form.Group>
                     <Form.Label>Nom</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Nom"
-                        value={player.player_name}
-                        onChange={e => setPlayer({...player, player_name: e.target.value})}
+                        value={player.name}
+                        onChange={e => setPlayer({...player, name: e.target.value})}
                     />
                 </Form.Group>
 
@@ -94,30 +99,31 @@ export default function App() {
                     <Form.Control
                         type="password"
                         placeholder="Mot de passe"
-                        value={player.player_password}
-                        onChange={e => setPlayer({...player, player_password: e.target.value})}
+                        value={player.password}
+                        onChange={e => setPlayer({...player, password: e.target.value})}
                     />
                     <Form.Text className="text-muted">
                         Vos informations sont sécurisées !
                     </Form.Text>
                 </Form.Group>
 
-                <Button
-                    className="mr-3"
-                    variant="primary"
-                    type="submit"
-                >
-                    Valider
-                </Button>
+                <div className="mt-5">
+                    <button
+                        className="btn btn-primary mr-3"
+                        type="submit"
+                    >
+                        Valider
+                    </button>
 
-                <Button
-                    className="mr-3"
-                    variant="success"
-                    onClick={createAccount}
-                    disabled={checkCredential() === true}
-                >
-                    Créer un compte
-                </Button>
+                    <button
+                        className="btn btn-success mr-3"
+                        onClick={createAccount}
+                        disabled={checkCredential() === true}
+                    >
+                        Créer un compte
+                    </button>
+                    <div id="account-text"/>
+                </div>
             </Form>
         </div>
     );

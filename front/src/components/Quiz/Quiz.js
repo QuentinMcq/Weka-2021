@@ -3,36 +3,30 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import DropdownFilter from "../Dropdown/Dropdown";
 import {Link} from "@reach/router";
-import {Container, Button, Form} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 
 export default function Quiz() {
     const [searchTerm, setSearchTerm] = useState('');
     const [quizzes, setQuizzes] = useState([]);
 
-    // const [themes, setThemes] = useState([]);
-
     async function getQuiz() {
-        let data_quiz = [];
-        // let data_theme = [];
+        let quiz = [];
 
         try {
-            data_quiz = (await axios.get('/quiz')).data;
-            // data_theme = (await axios.get('/theme')).data;
+            quiz = (await axios.get('/quiz')).data;
         } catch (err) {
             alert(err);
         } finally {
-            setQuizzes(data_quiz);
-            // setThemes(data_theme);
+            setQuizzes(quiz);
         }
     }
 
-    async function deleteQuiz(quiz, id) {
+    async function deleteQuiz(id) {
         try {
-            await axios.delete('/quiz/' + id);
+            console.log(id)
+            await axios.delete(`delete_quiz/${id}`);
         } catch (err) {
             alert(err);
-        } finally {
-           // setQuizzes(data_quiz);
         }
     }
 
@@ -40,32 +34,42 @@ export default function Quiz() {
         getQuiz();
     }, []);
 
+    function quizId(id) {
+        quiz_id = id;
+    }
+
     const displayQuizzes = quizzes
-        .filter((item) => {
-            return searchTerm ? item.theme === searchTerm : true;
-        })
+        .filter((item) => searchTerm ? item.theme === searchTerm : true)
         .map((item, index) => (
             <>
                 <div key={index}>
                     <h2 className="font-weight-bold mt-5">Quiz n°{item.quiz_id}</h2>
+                    <h3 className="font-italic" style={{textDecoration: 'underline'}}>Thème :
+                        <span> {item.theme}</span>
+                    </h3>
 
-                    <Link className="quiz-img" to={`/quiz/${item.quiz_id}`}>
+                    <Link to={`/quiz/${item.quiz_id}`}>
                         <img
                             src={item.image}
                             alt="img-quiz"
                             style={{borderRadius: '5px'}}
                         />
-                        <h5 className="quiz-text">Accéder au quiz !</h5>
                     </Link>
 
+                    <div className="mt-2">
+                        <Link
+                            to='/question/create'
+                            className="btn btn-primary"
+                            onClick={() => quizId(item.quiz_id)}
+                        >Créer une question</Link>
 
-                    <Button
-                        className="mr-3"
-                        variant="success"
-                        onClick={() => deleteQuiz(item, item.quiz_id)}
-                    >
-                        Supprimer un quiz
-                    </Button>
+                        <button
+                            className="btn btn-danger mr-3"
+                            onClick={() => deleteQuiz(item.quiz_id)}
+                        >
+                            Supprimer le quiz
+                        </button>
+                    </div>
                 </div>
             </>
         ));
@@ -73,7 +77,7 @@ export default function Quiz() {
     return (
         <Container className="text-center">
             <DropdownFilter
-                themes={quizzes}
+                quizThemes={quizzes}
                 setSelected={setSearchTerm}
             />
 
@@ -81,3 +85,5 @@ export default function Quiz() {
         </Container>
     )
 }
+
+export let quiz_id;
