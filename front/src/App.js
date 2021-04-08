@@ -6,6 +6,7 @@ import {useCookies} from "react-cookie";
 import {Navbar, Nav, Form, Button, Container} from 'react-bootstrap';
 import Quiz from "./components/Quiz/Quiz";
 import Question from "./components/Question/Question";
+import Point from "./components/Point/Point";
 import {Router} from '@reach/router';
 
 export default function App() {
@@ -97,6 +98,7 @@ export default function App() {
             <Router>
                 <Quiz path='/quiz'/>
                 <Question path='/quiz/:id'/>
+                <Point path="/resultat"/>
             </Router>
         </Container>
        /* <div className="form">

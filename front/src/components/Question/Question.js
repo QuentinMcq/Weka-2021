@@ -1,10 +1,14 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import {Container, Row, Col} from "react-bootstrap";
+import Point from "../Point/Point";
+
 
 export default function Question(props) {
     const [questions, setQuestions] = useState([]);
+
     let point ;
+
 
     const tab =[];
     const nbquestion=[];
@@ -26,18 +30,13 @@ export default function Question(props) {
     function calculerPoint(){
         point=0;
 
-        //console.log(tab);
-     //console.log(document.getElementById("answer_"+j+"_"+i).checked)
         for (let i = 1; i <= 4; i++) {
             //console.log("nb question "+nbquestion[i-1]);
             for (let j = 1; j <= nbquestion[i-1]; j++) {
                let param= document.getElementById("answer_"+j+"_"+i)
-                //console.log(document.getElementById("answer_1_3").value)
-                //console.log("point "+answerPoint[i-1]);
-                //console.log("pass"+ tab[i-1])
+
 
                 if(param.checked && param.value===tab[i-1]) {
-                    //console.log("param "+ document.getElementById("answer_"+j+"_"+i).value)
                     point += answerPoint[i - 1];
                 }
 
@@ -45,7 +44,14 @@ export default function Question(props) {
 
         }
         console.log(point);
+        return point
+
+
     }
+    function affichagePoint(){
+        return point
+    }
+
 
 
     useEffect(() => {
@@ -74,7 +80,6 @@ export default function Question(props) {
                                             {nbquestion[index]=1}.
                                             <input type="radio" id={`answer_1_${index + 1}`} name={`q${index + 1}`} value={question.answer_1}/>
                                             &nbsp;
-                                            {nbquestion[index]=1}
 
                                             {question.answer_1.includes('https') ?
                                                 <img src={question.answer_1} alt='answer_1'/> :
@@ -148,8 +153,16 @@ export default function Question(props) {
                     </Container>
                 )}
                 <input type="button" id="calculPoint" value="Verifer les réponses" onClick={calculerPoint} />
+
+                {()=>{calculerPoint()}}
             </>
+
+            <Point
+                pt={point}
+            />
         </Container>
+
+
     );
 }
 
