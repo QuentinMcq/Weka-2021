@@ -19,7 +19,7 @@ router
         res.json("Page d'accueil");
     })
 
-    .post('/signup', async (req, res) => {
+    /*.post('/signup', async (req, res) => {
         try {
             bcrypt.hash(req.body.password, saltRounds, async (err, hash) => {
                 const result = await pool.query(
@@ -60,7 +60,7 @@ router
             res.sendStatus(401);
         }
     })
-
+*/
     .get('/quiz',
         async (req, res) => {
             try {

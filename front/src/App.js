@@ -74,7 +74,32 @@ export default function App() {
     }
 
     return (
-        <div className="form">
+        <Container>
+            <Navbar className="mb-5" bg="dark" variant="dark" style={{borderRadius: '2px'}}>
+                <Navbar.Brand href="/home">Quiz</Navbar.Brand>
+                <Navbar.Toggle/>
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/home">Accueil</Nav.Link>
+                        <Nav.Link href="/quiz">Quiz</Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Button className="btn btn-danger"
+                                onClick={() => removeCookie('td06')}
+                        >
+                            Déconnexion
+                        </Button>
+
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+
+            <Router>
+                <Quiz path='/quiz'/>
+                <Question path='/quiz/:id'/>
+            </Router>
+        </Container>
+       /* <div className="form">
             <img src="https://picsum.photos/200" alt="auth-logo"/>
             <Form className="p-4" onSubmit={signIn} method="post">
 
@@ -119,6 +144,6 @@ export default function App() {
                     Créer un compte
                 </Button>
             </Form>
-        </div>
+        </div>*/
     );
 }
