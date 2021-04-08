@@ -42,33 +42,39 @@ export default function Quiz() {
         .filter((item) => searchTerm ? item.theme === searchTerm : true)
         .map((item, index) => (
             <>
-                <div key={index}>
-                    <h2 className="font-weight-bold mt-5">Quiz n°{item.quiz_id}</h2>
-                    <h3 className="font-italic" style={{textDecoration: 'underline'}}>Thème :
-                        <span> {item.theme}</span>
-                    </h3>
+                <div key={index} className="quiz">
+                    <div className="col d-flex justify-content-center">
+                        <div className="card" style={{borderRadius: "20px"}}>
+                            <h2 className="font-weight-bold">Quiz n°{item.quiz_id}</h2>
+                            <h3 className="card-title">{item.name}</h3>
+                            <h3 className="font-italic" style={{textDecoration: 'underline'}}>Thème :
+                                <span> {item.theme}</span>
+                            </h3>
 
-                    <Link to={`/quiz/${item.quiz_id}`}>
-                        <img
-                            src={item.image}
-                            alt="img-quiz"
-                            style={{borderRadius: '5px'}}
-                        />
-                    </Link>
+                            <Link to={`/quiz/${item.quiz_id}`}>
+                                <img
+                                    className="image"
+                                    src={item.image}
+                                    alt="img-quiz"
+                                    style={{borderRadius: '5px'}}
+                                />
+                            </Link>
 
-                    <div className="mt-2">
-                        <Link
-                            to='/question/create'
-                            className="btn btn-primary"
-                            onClick={() => quizId(item.quiz_id)}
-                        >Créer une question</Link>
+                            <div className="mt-2">
+                                <Link
+                                    to='/question/create'
+                                    className="btn btn-primary"
+                                    onClick={() => quizId(item.quiz_id)}
+                                >Créer une question</Link>
 
-                        <button
-                            className="btn btn-danger ml-3"
-                            onClick={() => deleteQuiz(item.quiz_id)}
-                        >
-                            Supprimer le quiz
-                        </button>
+                                <button
+                                    className="btn btn-danger ml-3"
+                                    onClick={() => deleteQuiz(item.quiz_id)}
+                                >
+                                    Supprimer le quiz
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </>

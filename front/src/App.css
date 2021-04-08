@@ -1,11 +1,29 @@
+
 #form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #form-style {
-    border: 1px solid white;
-    border-radius: 20px;
-    background-color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  background-color: white;
 }
+
+.image {
+  max-width: 100%;
+  margin-bottom: 20px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.quiz {
+  margin: 40px;
+}
+
+.card {
+  justify-content: center;
+  padding: 40px;
+}
+
