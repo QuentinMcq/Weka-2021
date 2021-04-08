@@ -18,7 +18,7 @@ router
     .post('/signup', async (req, res) => {
         try {
             bcrypt.hash(req.body.password, saltRounds, async (err, hash) => {
-                const result = await pool.query(
+                await pool.query(
                     'insert into player(name, password) values ($1, $2) returning player_id',
                     [req.body.name, hash]
                 );
