@@ -7,12 +7,14 @@ export default function CheckQuestion(props) {
                 <Row className='justify-content-center'>
                     <Col md="auto">
                         <>
-                            <input type="checkbox" id="answer_1" name="answer_1"/>
+                            {props.nbQuestion[props.index] = 1}.
+                            <input type="radio" id={`answer_1_${props.index + 1}`} name={`q${props.index + 1}`} value={props.question.answer_1}/>
+                            &nbsp;
                             &nbsp;
 
-                            {props.questions.answer_1.includes('https') ?
-                                <img src={props.questions.answer_1} alt='answer_1'/> :
-                                <span>{props.questions.answer_1}</span>
+                            {props.question.answer_1.includes('https') ?
+                                <img src={props.question.answer_1} alt='answer_1'/> :
+                                <span>{props.question.answer_1}</span>
                             }
                         </>
                     </Col>
@@ -21,12 +23,13 @@ export default function CheckQuestion(props) {
 
                     <Col md="auto">
                         <>
-                            <input type="checkbox" id="answer_2" name="answer_2"/>
+                            {props.nbQuestion[props.index] = 2}.
+                            <input type="radio" id={`answer_2_${props.index + 1}`} name={`q${props.index + 1}`} value={props.question.answer_2}/>
                             &nbsp;
 
-                            {props.questions.answer_2.includes('https') ?
-                                <img src={props.questions.answer_2} alt='answer_2'/> :
-                                <span>{props.questions.answer_2}</span>
+                            {props.question.answer_2.includes('https') ?
+                                <img src={props.question.answer_2} alt='answer_2'/> :
+                                <span>{props.question.answer_2}</span>
                             }
                         </>
                     </Col>
@@ -38,13 +41,14 @@ export default function CheckQuestion(props) {
             <Container>
                 <Row className='justify-content-center'>
                     <Col md="auto">
-                        {props.questions.answer_3 !== null ? (
+                        {props.question.answer_3 !== null ? (
                             <>
-                                <input type="checkbox" id="answer_3" name="answer_3"/>
+                                {props.nbQuestion[props.index] = 3}.
+                                <input type="radio" id={`answer_3_${props.index + 1}`} name={`q${props.index + 1}`} value={props.question.answer_3}/>
                                 &nbsp;
-                                {props.questions.answer_3.includes('https') ?
-                                    <img src={props.questions.answer_3} alt='answer_3'/> :
-                                    <span>{props.questions.answer_3}</span>
+                                {props.question.answer_3.includes('https') ?
+                                    <img src={props.question.answer_3} alt='answer_3'/> :
+                                    <span>{props.question.answer_3}</span>
                                 }
                             </>
                         ) : ''}
@@ -54,21 +58,21 @@ export default function CheckQuestion(props) {
                     <br/>
 
                     <Col md="auto">
-                        {props.questions.answer_4 !== null ? (
+                        {props.question.answer_4 !== null ? (
                             <>
-                                <input type="checkbox" id="answer_4" name="answer_4"/>
+                                {props.nbQuestion[props.index] = 4}.
+                                <input type="radio" id={`answer_4_${props.index + 1}`} name={`q${props.index + 1}`} value={props.question.answer_4}/>
                                 &nbsp;
 
-                                {props.questions.answer_4.includes('https') ?
-                                    <img src={props.questions.answer_4} alt='answer_4'/> :
-                                    <span>{props.questions.answer_4}</span>
+                                {props.question.answer_4.includes('https') ?
+                                    <img src={props.question.answer_4} alt='answer_4'/> :
+                                    <span>{props.question.answer_4}</span>
                                 }
                             </>
                         ) : ''}
                     </Col>
                 </Row>
             </Container>
-
         </>
     )
 }

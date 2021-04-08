@@ -2,12 +2,12 @@ import {Form} from "react-bootstrap";
 import {Link} from "@reach/router";
 import {useState} from "react";
 import axios from "axios";
-import {test} from "../Quiz/Quiz"
+import {quiz_id} from "../Quiz/Quiz"
 
 
 export default function CreateQuestion() {
     const [question, setQuestion] = useState({
-        quiz_id: test,
+        quiz_id: quiz_id,
         sentence: "",
         answer_1: "",
         answer_2: "",
@@ -21,16 +21,11 @@ export default function CreateQuestion() {
         question.answer_2.length === 0 || question.answer_3.length === 0 || question.answer_4.length === 0 ||
         question.correct_answer.length === 0 || question.nb_points.length === 0;
 
-    async function createQuestion(e) {
-        e.preventDefault();
-        let questionText = document.getElementById("question-text");
-
+    async function createQuestion() {
         try {
-            console.log(question)
             await axios.post('/create_question', question);
-            questionText.innerHTML = "Question créée !"
         } catch (err) {
-            alert(err);
+            alert("Veuillez entrer des propositions valides !");
         }
     }
 
@@ -100,23 +95,22 @@ export default function CreateQuestion() {
                 <Form.Group>
                     <Form.Label>Points</Form.Label>
                     <Form.Control
-                        type="text"
+                        type="number"
                         placeholder="Points"
                         value={question.nb_points}
                         onChange={e => setQuestion({...question, nb_points: e.target.value})}
                     />
                 </Form.Group>
 
-                <Link to='/quiz'>
+                <Link to={`/quiz`}>
                     <button
                         className="btn btn-success mr-3"
                         onClick={createQuestion}
-                        disabled={checkValues === true}
+                        disabled={(checkValues() === true)}
                     >
                         Créer la question !
                     </button>
                 </Link>
-                <div id="question-text"/>
             </Form>
         </div>
     )

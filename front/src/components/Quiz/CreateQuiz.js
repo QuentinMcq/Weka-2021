@@ -25,14 +25,9 @@ export default function CreateQuiz() {
         }
     }
 
-    async function createQuiz(e) {
-        e.preventDefault();
-        let quizText = document.getElementById("quiz-text");
-
+    async function createQuiz() {
         try {
-            console.log(quiz)
             await axios.post('/create_quiz', quiz);
-            quizText.innerHTML = "Quiz créé !"
         } catch (err) {
             alert(err);
         }
@@ -81,13 +76,12 @@ export default function CreateQuiz() {
                 <Link to='/quiz'>
                     <button
                         className="btn btn-success mr-3"
-                        disabled={checkValues === true}
+                        disabled={(checkValues() === true)}
                         onClick={createQuiz}
                     >
                         Créer le quiz !
                     </button>
                 </Link>
-                <div id="quiz-text"/>
             </Form>
         </div>
     )

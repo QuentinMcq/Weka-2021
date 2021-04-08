@@ -35,7 +35,7 @@ export default function Quiz() {
     }, []);
 
     function quizId(id) {
-        test = id;
+        quiz_id = id;
     }
 
     const displayQuizzes = quizzes
@@ -57,6 +57,12 @@ export default function Quiz() {
                     </Link>
 
                     <div className="mt-2">
+                        <Link
+                            to='/question/create'
+                            className="btn btn-primary"
+                            onClick={() => quizId(item.quiz_id)}
+                        >Créer une question</Link>
+
                         <button
                             className="btn btn-danger mr-3"
                             onClick={() => deleteQuiz(item.quiz_id)}
@@ -64,12 +70,6 @@ export default function Quiz() {
                             Supprimer le quiz
                         </button>
                     </div>
-
-                    <Link
-                        to='/question/create'
-                        className="btn btn-primary"
-                        onClick={() => quizId(item.quiz_id)}
-                    >Créer une question</Link>
                 </div>
             </>
         ));
@@ -86,4 +86,4 @@ export default function Quiz() {
     )
 }
 
-export let test;
+export let quiz_id;
