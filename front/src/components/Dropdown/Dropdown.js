@@ -17,8 +17,7 @@ export default function DropdownFilter(props) {
                     </Dropdown.Item>
 
                     <Dropdown.Divider/>
-
-                    {props.themes.map((item, index) => (
+                    {props.quizThemes.map((item, index) => (
                         <>
                             <Dropdown.Item
                                 key={index}
