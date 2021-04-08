@@ -49,16 +49,16 @@ create table question
 );
 
 insert into question(sentence, answer_1, answer_2, answer_3, answer_4, correct_answer, nb_points, quiz_id)
-values ('Quel est lanimal le plus lent du monde ?', 'Paresseux à trois doigts', 'Paresseux à quatre doigts',
+values ('Quel est l`animal le plus lent du monde ?', 'Paresseux à trois doigts', 'Paresseux à quatre doigts',
         'Tortue à trois doigts', 'Tortue à quatre doigts', 'Paresseux à trois doigts', 1, 1),
        ('Quel oiseau est le symbole universel de la paix ?', 'Aigle', 'Pie', 'Hirondelle', 'Colombe', 'Colombe', 2, 1),
        ('Quel animal a la plus haute pression sanguine ?', 'https://picsum.photos/100', 'https://picsum.photos/100',
         'https://picsum.photos/100', 'https://picsum.photos/100', 'https://picsum.photos/200', 3, 1),
        ('Le python est un serpent venimeux. Vrai ou faux ?', 'Vrai', 'Faux', null, null, 'Faux', 3, 1),
-       ('Lequel de ces composants nest pas un périphérique informatique ?', 'Clavier', 'Carte mère', 'Souris', 'Ecran',
+       ('Lequel de ces composants n`est pas un périphérique informatique ?', 'Clavier', 'Carte mère', 'Souris', 'Ecran',
         'Carte mère',
         3, 2),
-       ('Comment appelle-t-on un réseau créé pour la communication à lintérieur dune organisation ?', 'World Wide Web',
+       ('Comment appelle-t-on un réseau créé pour la communication à l`intérieur d`une organisation ?', 'World Wide Web',
         'Yahoo', 'Un intranet', 'Internet', 'Un intranet', 2, 2),
        ('Quand a été créé le DVD ?', '1995', '1990', '2000', '1970', '1995', 3, 2),
        ('Quel est le premier jeu vidéo considéré comment un succès commercial ?', 'Pong', 'Tetris', 'Donkey Kong',
@@ -67,11 +67,11 @@ values ('Quel est lanimal le plus lent du monde ?', 'Paresseux à trois doigts',
         'Minecraft', 2, 3),
        ('Quelle est la console la plus vendue au monde ?', 'XBOX 360', 'Playstation 2', 'Playstation 3',
         'Nintendo Switch', 'Playstation 2', 2, 3),
-       ('Qui est lauteur de la saga Harry Potter  ?', 'George R.R. Martin', 'J. K. Rowling', 'Stephanie Meyer',
+       ('Qui est l`auteur de la saga Harry Potter  ?', 'George R.R. Martin', 'J. K. Rowling', 'Stephanie Meyer',
         'Mary Shelly', 'J. K. Rowling', 1, 4),
        ('Quel est le premier roman publié par Stephen King ?', 'Ca', 'Shining, lenfant lumière', 'Simetierre', 'Carrie',
         'Carrie', 2, 4),
-       ('Quel est le nom de lalter ego maléfique dans lÉtrange Cas du docteur Jekyll et de M. Hyde ?', 'Dr. Jekyll',
+       ('Quel est le nom de l`alter ego maléfique dans l`Étrange Cas du docteur Jekyll et de M. Hyde ?', 'Dr. Jekyll',
         'M. Hyde', null, null, 'M. Hyde', 3, 4);
 
 create table player

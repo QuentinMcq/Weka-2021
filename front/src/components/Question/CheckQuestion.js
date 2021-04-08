@@ -13,7 +13,7 @@ export default function CheckQuestion(props) {
                             &nbsp;
 
                             {props.question.answer_1.includes('https') ?
-                                <img src={props.question.answer_1} alt='answer_1'/> :
+                                <img src={props.question.answer_1} style={{borderRadius: '5px'}} alt='answer_1'/> :
                                 <span>{props.question.answer_1}</span>
                             }
                         </>
@@ -28,7 +28,7 @@ export default function CheckQuestion(props) {
                             &nbsp;
 
                             {props.question.answer_2.includes('https') ?
-                                <img src={props.question.answer_2} alt='answer_2'/> :
+                                <img src={props.question.answer_2} style={{borderRadius: '5px'}} alt='answer_2'/> :
                                 <span>{props.question.answer_2}</span>
                             }
                         </>
@@ -47,7 +47,7 @@ export default function CheckQuestion(props) {
                                 <input type="radio" id={`answer_3_${props.index + 1}`} name={`q${props.index + 1}`} value={props.question.answer_3}/>
                                 &nbsp;
                                 {props.question.answer_3.includes('https') ?
-                                    <img src={props.question.answer_3} alt='answer_3'/> :
+                                    <img src={props.question.answer_3} style={{borderRadius: '5px'}} alt='answer_3'/> :
                                     <span>{props.question.answer_3}</span>
                                 }
                             </>
@@ -65,7 +65,7 @@ export default function CheckQuestion(props) {
                                 &nbsp;
 
                                 {props.question.answer_4.includes('https') ?
-                                    <img src={props.question.answer_4} alt='answer_4'/> :
+                                    <img src={props.question.answer_4} style={{borderRadius: '5px'}} alt='answer_4'/> :
                                     <span>{props.question.answer_4}</span>
                                 }
                             </>

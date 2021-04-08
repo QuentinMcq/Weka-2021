@@ -3,12 +3,11 @@ import {Link} from "@reach/router";
 import axios from "axios";
 import {useEffect, useState} from "react";
 
-
 export default function CreateQuiz() {
     const [quiz, setQuiz] = useState({
         name: "",
         image: "",
-        theme: "",
+        theme: ""
     });
     const [themes, setThemes] = useState([]);
     const checkValues = () => quiz.name.length === 0 || quiz.image.length === 0 || quiz.theme.length === 0;
@@ -38,9 +37,9 @@ export default function CreateQuiz() {
     }, []);
 
     return (
-        <div id="form-container">
-            <Form className="p-4">
-                <h3 className="text-center mb-5">Création de quiz</h3>
+        <div className="form-container">
+            <Form className="p-4 form-style">
+                <h3 className="text-center mb-4">Création de quiz</h3>
                 <Form.Group>
                     <Form.Label>Nom</Form.Label>
                     <Form.Control
@@ -66,7 +65,8 @@ export default function CreateQuiz() {
                     <Form.Control
                         as="select"
                         value={quiz.theme}
-                        onChange={e => setQuiz({...quiz, theme: e.target.value})}>
+                        onChange={e => setQuiz({...quiz, theme: e.target.value})}
+                    >
                         {themes.map((item) =>
                             <option>{item.name}</option>
                         )}

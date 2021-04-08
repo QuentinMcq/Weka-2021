@@ -44,6 +44,7 @@ export default function Question(props) {
 
         displayQuiz.style.display = 'none';
         result.innerHTML = `Vous avez obtenu ${point} points sur un total de ${totalPoints} points !`;
+        result.style.fontWeight = 'bold';
     }
 
     useEffect(() => {
@@ -54,17 +55,21 @@ export default function Question(props) {
         <>
             <Container id="display-quiz" style={{textAlign: 'center'}}>
                 {questions.map((question, index) =>
-                    <Container key={index} style={{marginTop: '5%'}}>
-                        <h3 style={{textDecoration: 'underline'}}>Question {index + 1}
+                    <Container key={index} className="form-style mt-5 p-4">
+                        <h3 className="font-weight-bold" style={{textDecoration: 'underline'}}>Question {index + 1}
                             <div style={{display: "none"}}>{tab[index] = question.correct_answer}</div>
                             <div style={{display: "none"}}> {answerPoint[index] = question.nb_points}</div>
-                            <span className="font-weight-bold"> ({question.nb_points} points)</span>
+                            <span className="font-italic" style={{color: "darkorange"}}> ({question.nb_points} points)</span>
                         </h3>
                         <br/>
                         <h4>{question.sentence}</h4>
                         <br/>
 
-                        <CheckQuestion question={question} index={index} nbQuestion={nbQuestion}/>
+                        <CheckQuestion
+                            question={question}
+                            index={index}
+                            nbQuestion={nbQuestion}
+                        />
                     </Container>
                 )}
 

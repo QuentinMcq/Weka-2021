@@ -20,10 +20,9 @@ export default function SignIn(props) {
     }
 
     return (
-        <div id="form-container">
+        <div className="form-container">
             <Form
-                id="form-style"
-                className="p-5"
+                className="form-style p-5"
                 onSubmit={signIn}
                 method="post"
             >

@@ -1,29 +1,38 @@
-
-#form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#form-style {
-  border: 1px solid white;
-  border-radius: 20px;
-  background-color: white;
+.form-style {
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.link-style {
+    text-decoration: none;
+    color: white;
+}
+
+.link-style:hover {
+    text-decoration: none;
+    color: red;
 }
 
 .image {
-  max-width: 100%;
-  margin-bottom: 20px;
-  height: auto;
-  border-radius: 20px;
+    max-width: 100%;
+    margin-bottom: 20px;
+    height: auto;
+    border-radius: 20px;
 }
 
 .quiz {
-  margin: 40px;
+    margin: 40px;
 }
 
 .card {
-  justify-content: center;
-  padding: 40px;
+    justify-content: center;
+    padding: 40px;
 }
 

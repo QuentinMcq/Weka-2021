@@ -1,4 +1,4 @@
-import {Form} from "react-bootstrap";
+import {Form, Row, Col} from "react-bootstrap";
 import {Link} from "@reach/router";
 import {useState} from "react";
 import axios from "axios";
@@ -30,87 +30,114 @@ export default function CreateQuestion() {
     }
 
     return (
-        <div id="form-container">
-            <Form>
-                <Form.Group>
-                    <Form.Label>Question</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Question"
-                        value={question.sentence}
-                        onChange={e => setQuestion({...question, sentence: e.target.value})}
-                    />
-                </Form.Group>
+        <div className="form-container">
+            <Form className="form-style p-5">
+                <h2 className="mb-5 text-center">Création d'une question</h2>
 
-                <Form.Group>
-                    <Form.Label>Réponse 1</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Réponse 1"
-                        value={question.answer_1}
-                        onChange={e => setQuestion({...question, answer_1: e.target.value})}
-                    />
-                </Form.Group>
+                <Row className='justify-content-center'>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Question</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Question"
+                                value={question.sentence}
+                                onChange={e => setQuestion({...question, sentence: e.target.value})}
+                            />
+                        </Form.Group>
+                    </Col>
 
-                <Form.Group>
-                    <Form.Label>Réponse 2</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Réponse 2"
-                        value={question.answer_2}
-                        onChange={e => setQuestion({...question, answer_2: e.target.value})}
-                    />
-                </Form.Group>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Points</Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="Points"
+                                value={question.nb_points}
+                                onChange={e => setQuestion({...question, nb_points: e.target.value})}
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
 
-                <Form.Group>
-                    <Form.Label>Réponse 3</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Réponse 3"
-                        value={question.answer_3}
-                        onChange={e => setQuestion({...question, answer_3: e.target.value})}
-                    />
-                </Form.Group>
+                <Row>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Réponse 1</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Réponse 1"
+                                value={question.answer_1}
+                                onChange={e => setQuestion({...question, answer_1: e.target.value})}
+                            />
+                        </Form.Group>
+                    </Col>
 
-                <Form.Group>
-                    <Form.Label>Réponse 4</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Réponse 4"
-                        value={question.answer_4}
-                        onChange={e => setQuestion({...question, answer_4: e.target.value})}
-                    />
-                </Form.Group>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Réponse 2</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Réponse 2"
+                                value={question.answer_2}
+                                onChange={e => setQuestion({...question, answer_2: e.target.value})}
+                            />
+                        </Form.Group>
+                    </Col>
 
-                <Form.Group>
-                    <Form.Label>Réponse correcte</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Réponse correcte"
-                        value={question.correct_answer}
-                        onChange={e => setQuestion({...question, correct_answer: e.target.value})}
-                    />
-                </Form.Group>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Réponse 3</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Réponse 3"
+                                value={question.answer_3}
+                                onChange={e => setQuestion({...question, answer_3: e.target.value})}
+                            />
+                        </Form.Group>
+                    </Col>
 
-                <Form.Group>
-                    <Form.Label>Points</Form.Label>
-                    <Form.Control
-                        type="number"
-                        placeholder="Points"
-                        value={question.nb_points}
-                        onChange={e => setQuestion({...question, nb_points: e.target.value})}
-                    />
-                </Form.Group>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Réponse 4</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Réponse 4"
+                                value={question.answer_4}
+                                onChange={e => setQuestion({...question, answer_4: e.target.value})}
+                            />
+                        </Form.Group>
+                    </Col>
 
-                <Link to={`/quiz`}>
-                    <button
-                        className="btn btn-success mr-3"
-                        onClick={createQuestion}
-                        disabled={(checkValues() === true)}
-                    >
-                        Créer la question !
-                    </button>
-                </Link>
+                    <Col className="mb-4">
+                        <Form.Group>
+                            <Form.Label>Réponse correcte</Form.Label>
+                            <Form.Control
+                                as="select"
+                                placeholder="Réponse correcte"
+                                value={question.correct_answer}
+                                onChange={e => setQuestion({...question, correct_answer: e.target.value})}
+                            >
+                                <option>{question.answer_1}</option>
+                                <option>{question.answer_2}</option>
+                                <option>{question.answer_3}</option>
+                                <option>{question.answer_4}</option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
+                </Row>
+
+                <div className="">
+                    <Link to={`/quiz/${question.quiz_id}`}>
+                        <button
+                            className="btn btn-success mr-3"
+                            onClick={createQuestion}
+                            disabled={(checkValues() === true)}
+                        >
+                            Créer la question !
+                        </button>
+                    </Link>
+                </div>
             </Form>
         </div>
     )

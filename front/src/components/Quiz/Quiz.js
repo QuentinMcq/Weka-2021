@@ -45,9 +45,9 @@ export default function Quiz() {
                 <div key={index} className="quiz">
                     <div className="col d-flex justify-content-center">
                         <div className="card" style={{borderRadius: "20px"}}>
-                            <h2 className="font-weight-bold">Quiz n°{item.quiz_id}</h2>
+                            <h2 className="font-weight-bold" style={{color: 'darkorange'}}>Quiz n°{item.quiz_id}</h2>
                             <h3 className="card-title">{item.name}</h3>
-                            <h3 className="font-italic" style={{textDecoration: 'underline'}}>Thème :
+                            <h3 className="font-italic mb-4" style={{textDecoration: 'underline', color: 'grey'}}>Thème:
                                 <span> {item.theme}</span>
                             </h3>
 
@@ -60,7 +60,7 @@ export default function Quiz() {
                                 />
                             </Link>
 
-                            <div className="mt-2">
+                            <div className="mt-3">
                                 <Link
                                     to='/question/create'
                                     className="btn btn-primary"

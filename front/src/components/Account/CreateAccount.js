@@ -11,6 +11,8 @@ export default function CreateAccount(props) {
 
         try {
             accountText.innerHTML = "Compte créé avec succès !"
+            accountText.style.fontWeight = 'bold';
+            accountText.style.color = 'green';
             await axios.post('/signup', props.player);
         } catch (err) {
             alert(err);
@@ -18,10 +20,9 @@ export default function CreateAccount(props) {
     }
 
     return (
-        <div id="form-container">
+        <div className="form-container">
             <Form
-                id="form-style"
-                className="p-5"
+                className="form-style p-5"
                 onSubmit={createAccount}
                 method="post"
             >
@@ -49,7 +50,7 @@ export default function CreateAccount(props) {
                     </Form.Text>
                 </Form.Group>
 
-                <div className="mt-5" style={{display: "inline-flex"}}>
+                <div className="mt-5">
                     <button
                         className="btn btn-primary mr-3"
                         type="submit"
@@ -58,10 +59,9 @@ export default function CreateAccount(props) {
                         Valider
                     </button>
 
-                    <div id="account-text"/>
-
                     <Link to='/' className="btn btn-secondary">Retour</Link>
                 </div>
+                <div id="account-text" className="mt-3"/>
             </Form>
         </div>
     );
