@@ -11,7 +11,7 @@ it("display quiz", (done) => {
         .get('/quiz/1')
         .end((err, res) => {
             res.should.have.status(200);
-            res.body.should.have.text('test');
+            res.body.should.have.text('Connaissez-vous les animaux ?');
             done();
         });
 });
