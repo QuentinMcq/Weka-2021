@@ -4,7 +4,6 @@ import {useState} from "react";
 import axios from "axios";
 import {quiz_id} from "../Quiz/Quiz"
 
-
 export default function CreateQuestion() {
     const [question, setQuestion] = useState({
         quiz_id: quiz_id,
