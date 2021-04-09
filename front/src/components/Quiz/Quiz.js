@@ -55,6 +55,7 @@ export default function Quiz() {
                                 <img
                                     className="image"
                                     src={item.image}
+                                    id={item.quiz_id}
                                     alt="img-quiz"
                                     style={{borderRadius: '5px'}}
                                 />

@@ -76,6 +76,7 @@ export default function Question(props) {
                 <div className="mt-5 mb-5">
                     <button
                         className="btn btn-primary mr-3"
+                        id="verify"
                         onClick={calculatePoints}
                     >
                         Vérifier les réponses
