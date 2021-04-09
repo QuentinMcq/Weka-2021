@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "resetDB": "psql -f data/pg.sql",
-    "test": "node node_modules/mocha/bin/mocha back/**/*.spec.js"
+    "test": "node node_modules/mocha/bin/mocha test/displayAndSubmitQuiz.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,6 @@
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "express-fileupload": "^1.2.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
