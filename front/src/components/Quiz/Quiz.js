@@ -1,4 +1,3 @@
-import './Quiz.css';
 import {useState, useEffect} from "react";
 import axios from "axios";
 import DropdownFilter from "../Dropdown/Dropdown";

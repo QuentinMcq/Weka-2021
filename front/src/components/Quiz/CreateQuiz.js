@@ -1,6 +1,7 @@
 import {Form} from "react-bootstrap";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {Link} from "@reach/router";
 
 export default function CreateQuiz() {
     const [quiz, setQuiz] = useState({
@@ -23,8 +24,14 @@ export default function CreateQuiz() {
         }
     }
 
-    async function createQuiz() {
+    async function createQuiz(e) {
+        let quizText = document.getElementById('quiz-text');
+        e.preventDefault();
+
         try {
+            quizText.innerHTML = "Quiz créé avec succès !"
+            quizText.style.fontWeight = 'bold';
+            quizText.style.color = 'green';
             await axios.post('/create_quiz', quiz);
         } catch (err) {
             alert(err);
@@ -72,7 +79,7 @@ export default function CreateQuiz() {
                     </Form.Control>
                 </Form.Group>
 
-
+                <div className="mt-5">
                     <button
                         className="btn btn-success mr-3"
                         disabled={(checkValues() === true)}
@@ -81,6 +88,10 @@ export default function CreateQuiz() {
                         Créer le quiz !
                     </button>
 
+                    <Link to='/quiz' className="btn btn-secondary">Retour</Link>
+                </div>
+
+                <div id="quiz-text"></div>
             </Form>
         </div>
     )

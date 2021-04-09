@@ -20,8 +20,14 @@ export default function CreateQuestion() {
         question.answer_2.length === 0 || question.answer_3.length === 0 || question.answer_4.length === 0 ||
         question.correct_answer.length === 0 || question.nb_points.length === 0;
 
-    async function createQuestion() {
+    async function createQuestion(e) {
+        let questionText = document.getElementById('question-text');
+        e.preventDefault();
+
         try {
+            questionText.innerHTML = "Question créé avec succès !"
+            questionText.style.fontWeight = 'bold';
+            questionText.style.color = 'green';
             await axios.post('/create_question', question);
         } catch (err) {
             alert("Veuillez entrer des propositions valides !");
@@ -126,17 +132,19 @@ export default function CreateQuestion() {
                     </Col>
                 </Row>
 
-                <div className="">
-                    <Link to={`/quiz/${question.quiz_id}`}>
-                        <button
-                            className="btn btn-success mr-3"
-                            onClick={createQuestion}
-                            disabled={(checkValues() === true)}
-                        >
-                            Créer la question !
-                        </button>
-                    </Link>
+                <div className="mt-5">
+                    <button
+                        className="btn btn-success mr-3"
+                        onClick={createQuestion}
+                        disabled={(checkValues() === true)}
+                    >
+                        Créer la question !
+                    </button>
+
+                    <Link to={`/quiz/${question.quiz_id}`} className="btn btn-secondary">Retour</Link>
                 </div>
+
+                <div id="question-text"></div>
             </Form>
         </div>
     )
