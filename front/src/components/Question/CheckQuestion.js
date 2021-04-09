@@ -10,7 +10,6 @@ export default function CheckQuestion(props) {
                             {props.nbQuestion[props.index] = 1}.
                             <input type="radio" id={`answer_1_${props.index + 1}`} name={`q${props.index + 1}`} value={props.question.answer_1}/>
                             &nbsp;
-                            &nbsp;
 
                             {props.question.answer_1.includes('https') ?
                                 <img src={props.question.answer_1} style={{borderRadius: '5px'}} alt='answer_1'/> :

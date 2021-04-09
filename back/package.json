@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "resetDB": "psql -f data/pg.sql"
+    "resetDB": "psql -f data/pg.sql",
+    "test": "node node_modules/mocha/bin/mocha back/**/*.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,9 @@
     "pg": "^8.5.1"
   },
   "devDependencies": {
-    "cypress": "^7.0.1"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.2",
+    "request": "^2.88.2"
   }
 }

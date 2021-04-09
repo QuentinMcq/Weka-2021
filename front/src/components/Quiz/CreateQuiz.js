@@ -73,7 +73,7 @@ export default function CreateQuiz() {
                     </Form.Control>
                 </Form.Group>
 
-                <Link to='/quiz'>
+
                     <button
                         className="btn btn-success mr-3"
                         disabled={(checkValues() === true)}
@@ -81,7 +81,7 @@ export default function CreateQuiz() {
                     >
                         Créer le quiz !
                     </button>
-                </Link>
+
             </Form>
         </div>
     )
